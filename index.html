@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emojimage - Discord Emoji & Sticker Downloader</title>
+    <title>emojimage | Lossless Discord Asset Extractor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,14 +11,14 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                <div class="logo" onclick="showPage('home')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                     emojimage
-                </a>
+                </div>
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#terms">Terms</a></li>
-                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+                    <li><a href="javascript:void(0)" onclick="showPage('terms')">Terms</a></li>
+                    <li><a href="javascript:void(0)" onclick="showPage('privacy')">Privacy</a></li>
                     <li><a href="https://github.com/SureK4sperl/emojimage" target="_blank">GitHub</a></li>
                 </ul>
                 <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary" target="_blank">Invite Bot</a>
@@ -26,80 +26,117 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Download Any <span>Discord</span> Asset.</h1>
-            <p>A self-hostable Discord bot designed specifically to download emojis and stickers directly from Discord. Even FakeNitro works with it.</p>
-            <div class="hero-btns">
-                <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary btn-lg" target="_blank">Invite to Server</a>
-                <a href="https://github.com/SureK4sperl/emojimage" class="btn btn-secondary btn-lg" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.305-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.871.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    View on GitHub
-                </a>
+    <main id="home" class="page active">
+        <section class="hero">
+            <div class="container">
+                <span class="badge">Self-Hostable Discord Bot</span>
+                <h1>Extract Assets in <span>Lossless</span> Quality.</h1>
+                <p>
+                    Stop settling for low-res previews. emojimage extracts direct CDN links for emojis and stickers with original upload parameters, allowing you to save assets exactly as they were uploaded.
+                </p>
+                <div class="hero-btns">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary btn-lg" target="_blank">Add to Discord</a>
+                    <a href="https://github.com/SureK4sperl/emojimage" class="btn btn-outline btn-lg" target="_blank">View Source</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Why emojimage?</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon-box">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="icon-box">🔗</div>
+                        <h3>Link Extraction</h3>
+                        <p>The bot identifies the asset and spits out the direct link immediately. No middle-man downloads, just the raw source.</p>
                     </div>
-                    <h3>Self-Hostable</h3>
-                    <p>Complete control. Run the bot on your own server or machine using the simple <code>bot.py</code> entry point.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon-box">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <div class="feature-card">
+                        <div class="icon-box">💎</div>
+                        <h3>Lossless Quality</h3>
+                        <p>Links are generated with original parameters, ensuring you get the highest quality possible—identical to the original upload.</p>
                     </div>
-                    <h3>Unified Downloader</h3>
-                    <p>Easily grab both static and animated emojis, as well as official Discord stickers, with a single command.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon-box">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    <div class="feature-card">
+                        <div class="icon-box">⚡</div>
+                        <h3>FakeNitro Ready</h3>
+                        <p>Works flawlessly even with FakeNitro. If you can see it or send it, emojimage can get the link for it.</p>
                     </div>
-                    <h3>FakeNitro Support</h3>
-                    <p>Even if you are using FakeNitro to send assets, emojimage can still detect and resolve the correct links for downloading.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <section class="legal">
-        <div class="container">
-            <div id="terms" class="legal-card">
-                <h2>Terms of Service</h2>
-                <p>Welcome to emojimage. By using this self-hostable bot, you agree to the following terms.</p>
-                <h3>Usage Rights</h3>
-                <p>You can use it however you like as long as the emojis / stickers you get the links or images from are NOT illegal.</p>
-                <div class="highlight-box">
-                    This tool works for animated stickers and emojis as well. Use it responsibly.
+    <main id="terms" class="page">
+        <section class="legal-hero">
+            <div class="container">
+                <h1>Terms of Service</h1>
+                <p>Last updated: March 2026</p>
+            </div>
+        </section>
+        <section class="legal-content">
+            <div class="container">
+                <div class="content-box">
+                    <h2>1. Agreement to Terms</h2>
+                    <p>By using emojimage, you agree to the conditions outlined on this page. As a self-hostable bot, you are responsible for the instance you run.</p>
+                    
+                    <h2>2. Usage License</h2>
+                    <p>You are granted the right to use, modify, and host this bot however you see fit. We believe in open software and user freedom.</p>
+                    
+                    <h2>3. Acceptable Use Policy</h2>
+                    <p>The core purpose of emojimage is to provide direct links to Discord assets. You agree to use this tool only for assets that are:</p>
+                    <ul>
+                        <li>Not illegal under your local jurisdiction or international law.</li>
+                        <li>Not in violation of copyright or trademark laws without proper authorization.</li>
+                    </ul>
+                    
+                    <h2>4. Disclaimer</h2>
+                    <p>The developer of emojimage provides this code "as-is" and is not responsible for any misuse of the tool or the content retrieved by its users.</p>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div id="privacy" class="legal-card">
-                <h2>Privacy Policy</h2>
-                <p>Your privacy is paramount.</p>
-                <div class="highlight-box">
-                    This bot collects and stores NO data.
-                </div>
-                <p>All operations occur locally on your machine. We do not track, log, or store your downloads or personal information.</p>
+    <main id="privacy" class="page">
+        <section class="legal-hero">
+            <div class="container">
+                <h1>Privacy Policy</h1>
+                <p>Simple. Transparent. Secure.</p>
             </div>
-        </div>
-    </section>
+        </section>
+        <section class="legal-content">
+            <div class="container">
+                <div class="content-box">
+                    <div class="privacy-highlight">
+                        This bot collects and stores <strong>NO</strong> data.
+                    </div>
+                    <h2>Data Processing</h2>
+                    <p>emojimage operates entirely in memory to process your request. Once the link is extracted and sent back to the Discord channel, the data is cleared.</p>
+                    
+                    <h2>No Logging</h2>
+                    <p>We do not maintain logs of what emojis you extract, which servers you use the bot in, or who you are. Because the bot is self-hostable, you have 100% visibility into the source code to verify this.</p>
+                    
+                    <h2>Third Parties</h2>
+                    <p>As this bot interacts with Discord's API, your use of the bot is also subject to Discord's Privacy Policy. We do not share any information with third parties because we don't have any information to share.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 emojimage Project.</p>
-            <p>Maintained by <a href="https://github.com/SureK4sperl" target="_blank">SureK4sperl</a>.</p>
+            <p>&copy; 2026 emojimage Project. Built for the Discord community.</p>
         </div>
     </footer>
 
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show requested page
+            document.getElementById(pageId).classList.add('active');
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
