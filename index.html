@@ -11,14 +11,14 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo" onclick="showPage('home')">
+                <a href="#home" class="logo">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
                     emojimage
-                </div>
+                </a>
                 <ul class="nav-links">
-                    <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('terms')">Terms</a></li>
-                    <li><a href="javascript:void(0)" onclick="showPage('privacy')">Privacy</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
                     <li><a href="https://github.com/SureK4sperl/emojimage" target="_blank">GitHub</a></li>
                 </ul>
                 <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary" target="_blank">Invite Bot</a>
@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <main id="home" class="page active">
+    <main id="home" class="page">
         <section class="hero">
             <div class="container">
                 <span class="badge">Self-Hostable Discord Bot</span>
@@ -127,16 +127,35 @@
     </footer>
 
     <script>
-        function showPage(pageId) {
+        /**
+         * ROUTING LOGIC
+         * This function checks the URL hash (e.g., #terms) and shows the corresponding page.
+         */
+        function handleRoute() {
+            // Get current hash, default to 'home' if empty
+            const hash = window.location.hash.replace('#', '') || 'home';
+            
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            // Show requested page
-            document.getElementById(pageId).classList.add('active');
-            // Scroll to top
-            window.scrollTo(0, 0);
+
+            // Show target page
+            const targetPage = document.getElementById(hash);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            } else {
+                // If hash doesn't exist, fallback to home
+                document.getElementById('home').classList.add('active');
+            }
         }
+
+        // Listen for hash changes (when a user clicks a link)
+        window.addEventListener('hashchange', handleRoute);
+
+        // Run once on initial page load (so direct links like /#terms work)
+        window.addEventListener('load', handleRoute);
     </script>
 </body>
 </html>
