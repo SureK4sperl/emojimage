@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emojimage - Discord Emoji & Sticker Downloader</title>
+    <style>
+        /* --- CORE STYLES --- */
+        :root {
+            --bg-color: #f9fafb;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --primary: #8b5cf6; /* Modern Purple */
+            --primary-dark: #7c3aed;
+            --accent: #10b981; /* Green accent */
+            --white: #ffffff;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-md);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-color);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: #ede9fe; /* light purple */
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+        }
+
+        /* --- LEGAL SECTIONS (TOS / PRIVACY) --- */
+        .legal {
+            padding: 100px 0;
+            background-color: var(--bg-color);
+        }
+
+        .legal-card {
+            background-color: var(--white);
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 50px;
+        }
+
+        .legal-card h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #ede9fe;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .legal-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 30px 0 15px;
+        }
+
+        .legal-card p, .legal-card ul {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .legal-card ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+
+        .highlight-box {
+            background-color: #ecfdf5; /* Light green */
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 4px;
+            color: #065f46;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-primary);
+            color: #d1d5db;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        footer a {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            color: #e5e7eb;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none; /* Simple hide for now, can be optimized with a burger */
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .legal-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                    emojimage
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#terms">Terms</a></li>
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="https://github.com/SureK4sperl/emojimage" target="_blank">GitHub</a></li>
+                </ul>
+                <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary" target="_blank">Invite Bot</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Download Any <span>Discord</span> Asset.</h1>
+            <p>A self-hostable Discord bot designed specifically to download emojis and stickers directly from Discord. Includes seamless integration with FakeNitro.</p>
+            <div class="hero-btns">
+                <a href="https://discord.com/oauth2/authorize?client_id=1456291804994470064" class="btn btn-primary btn-lg" target="_blank">Invite to Server</a>
+                <a href="https://github.com/SureK4sperl/emojimage" class="btn btn-secondary btn-lg" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.305-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.871.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why emojimage?</h2>
+            <div class="feature-grid">
+                
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </div>
+                    <h3>Self-Hostable</h3>
+                    <p>Complete control. Run the bot on your own server or machine using the simple <code>bot.py</code> entry point.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </div>
+                    <h3>Unified Downloader</h3>
+                    <p>Easily grab both static and animated emojis, as well as official Discord stickers, with a single command.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                    </div>
+                    <h3>FakeNitro Support</h3>
+                    <p>Even if you are using FakeNitro to send assets, emojimage can still detect and resolve the correct links for downloading.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="legal">
+        <div class="container">
+            
+            <div id="terms" class="legal-card">
+                <h2>Terms of Service</h2>
+                <p>Welcome to emojimage. By using this self-hostable bot, you agree to the following terms.</p>
+                
+                <h3>Usage Rights</h3>
+                <p>Since emojimage is a self-hostable tool, you are free to use, modify, and distribute the code however you like, provided you comply with the open-source license found in the GitHub repository.</p>
+
+                <h3>Responsible Use Clause</h3>
+                <div class="highlight-box">
+                    This tool is provided for convenience. You agree that you will not use emojimage to download or process any links or images that are illegal, infringe on intellectual property rights, or violate the Discord Terms of Service.
+                </div>
+                <p>The developer of emojimage holds no responsibility for the content you choose to download or how you choose to use the assets obtained.</p>
+            </div>
+
+            <div id="privacy" class="legal-card">
+                <h2>Privacy Policy</h2>
+                <p>Your privacy is paramount. Because emojimage is designed to be self-hosted by you, we (the developers) have no access to your data.</p>
+                
+                <h3>Data Collection</h3>
+                <div class="highlight-box">
+                    This bot collects and stores NO data.
+                </div>
+                
+                <h3>How It Works</h3>
+                <p>All operations occur locally on the machine where you host the bot. emojimage processes the following information strictly in real-time to execute commands:</p>
+                <ul>
+                    <li>Discord Message Content (to detect emoji/sticker links).</li>
+                    <li>User IDs (to verify command permissions, if configured).</li>
+                </ul>
+                <p>None of this information is logged, stored permanently, or transmitted to any external servers by the default emojimage installation.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 emojimage Project.</p>
+            <p>Maintained by <a href="https://github.com/SureK4sperl" target="_blank">SureK4sperl</a>.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
