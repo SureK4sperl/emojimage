@@ -13,9 +13,9 @@ EMOJI_REGEX = r"<(a?):([^:]+):(\d+)>"
 MAX_ITEMS = 5
 INVITE_URL = "https://discord.com/oauth2/authorize?client_id=1456291804994470064"
 GITHUB_URL = "https://github.com/SureK4sperl/emojimage-bot"
-TOS_URL = f"{GITHUB_URL}#tos"
-PRIVACY_URL = f"{GITHUB_URL}#privacy"
-WEBSITE_URL = GITHUB_URL
+TOS_URL = "https://k4sprl.github.io/emojimage/#terms"
+PRIVACY_URL = "https://k4sprl.github.io/emojimage/#privacy"
+WEBSITE_URL = "https://k4sprl.github.io/emojimage/"
 
 # custom UI emojis you added
 OK_EMOJI = "<:ok:1458119160612520162>"
