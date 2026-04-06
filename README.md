@@ -21,10 +21,18 @@ You can convert stickers to images and CDN links by sending the sticker to the b
 
 <img src="https://github.com/k4sprl/emojimage/blob/d698c372dcc43e5966f1e98e1360e9f4f7f3af7a/stickerShowcase.gif" width="500">
 
+## Data Privacy & Message Deletion
+Emojimage is built with privacy in mind. The bot **does not log, cache, or persistently store** any of your messages, emojis, or user data. It operates entirely in memory and throws away the data the second your image link is generated.
+
+If you want to clear your chat history with the bot, you have full control:
+* **In a 1-on-1 DM:** Simply use the `/cleardms` command. The bot will automatically scan the DM and securely bulk-delete its recent messages sent to you.
+* **In Group Chats / Friend DMs:** Because Emojimage is a User App, Discord natively protects your privacy by blocking bots from reading group chat history. To delete a bot's message here, you can simply right-click (or hold) the bot's message and click "Delete Message" yourself!
+
 ## Commands
 |Command|Explaination|
 |:---------:|:---------|
 |**/about**|Shows about text *(only visible to you)*|
+|**/cleardms**|Deletes the bot's recent messages in your 1-on-1 DM|
 |**/e2img**|Extract images out of emojis|
 |**/help**|Shows help message|
 |**/invite**|Add bot to your server or apps|
